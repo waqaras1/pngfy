@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional background removal tool powered by AI. Remove image backgrounds instantly with PngFy Pro.">
+    <meta name="keywords" content="background removal, AI, image processing, PNG, photo editor">
+    <meta name="author" content="PngFy Pro">
+    <meta property="og:title" content="PngFy Pro - AI Background Removal">
+    <meta property="og:description" content="Remove image backgrounds instantly with our AI-powered tool">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pngfy-pro.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#6366f1">
+    
+    <title>PngFy Pro - AI Background Removal Tool</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="/css/main.css" as="style">
+    <link rel="preload" href="/js/app.js" as="script">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/main.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <path d="M24 4L44 14V34L24 44L4 34V14L24 4Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <path d="M24 12L36 18V30L24 36L12 30V18L24 12Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                </svg>
+            </div>
+            <div class="loading-text">PngFy Pro</div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="app" class="app" style="display: none;">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <nav class="nav">
+                    <div class="nav-brand">
+                        <svg class="nav-logo" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M16 2L30 10V22L16 30L2 22V10L16 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M16 8L24 12V20L16 24L8 20V12L16 8Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                        <span class="nav-title">PngFy Pro</span>
+                    </div>
+                    
+                    <div class="nav-menu">
+                        <a href="#features" class="nav-link">Features</a>
+                        <a href="#pricing" class="nav-link">Pricing</a>
+                        <a href="#support" class="nav-link">Support</a>
+                        <button class="btn btn-primary btn-sm">Get Started</button>
+                    </div>
+                    
+                    <button class="nav-toggle" id="nav-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Remove Image Backgrounds
+                        <span class="gradient-text">Instantly</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Professional AI-powered background removal tool. 
+                        Get perfect results in seconds, not minutes.
+                    </p>
+                    
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-lg" id="upload-btn">
+                            <svg width="20" height="20" fill="none" stroke="currentColor">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7,10 12,15 17,10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Upload Image
+                        </button>
+                        <button class="btn btn-outline btn-lg" id="demo-btn">
+                            Try Demo
+                        </button>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">10M+</div>
+                            <div class="stat-label">Images Processed</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Accuracy</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">&lt;5s</div>
+                            <div class="stat-label">Processing Time</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="image-comparison">
+                        <div class="comparison-item">
+                            <div class="comparison-label">Original</div>
+                            <div class="comparison-image original">
+                                <img src="/images/demo_before.png" alt="Original image with background">
+                            </div>
+                        </div>
+                        <div class="comparison-arrow">
+                            <svg width="24" height="24" fill="none" stroke="currentColor">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">Result</div>
+                            <div class="comparison-image result">
+                                <img src="/images/demo_after.png" alt="Image with background removed">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upload Section -->
+        <section class="upload-section" id="upload-section">
+            <div class="container">
+                <div class="upload-area" id="upload-area">
+                    <div class="upload-content">
+                        <div class="upload-icon">
+                            <svg width="64" height="64" fill="none" stroke="currentColor">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7,10 12,15 17,10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                        </div>
+                        <h3 class="upload-title">Drop your image here</h3>
+                        <p class="upload-subtitle">
+                            or <button class="upload-link" id="browse-btn">browse files</button>
+                        </p>
+                        <div class="upload-formats">
+                            Supports: JPG, PNG, WEBP (max 10MB)
+                        </div>
+                    </div>
+                    
+                    <input type="file" id="file-input" accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="upload-preview" id="upload-preview" style="display: none;">
+                    <div class="preview-container">
+                        <div class="preview-original">
+                            <h4>Original</h4>
+                            <div class="preview-image">
+                                <img id="original-preview" alt="Original image">
+                            </div>
+                        </div>
+                        
+                        <div class="preview-actions">
+                            <button class="btn btn-primary" id="process-btn">
+                                <span class="btn-text">Remove Background</span>
+                                <span class="btn-loading" style="display: none;">
+                                    <div class="spinner"></div>
+                                    Processing...
+                                </span>
+                            </button>
+                            <button class="btn btn-outline" id="change-image-btn">Change Image</button>
+                        </div>
+                        
+                        <div class="preview-result" id="preview-result" style="display: none;">
+                            <h4>Result</h4>
+                            <div class="preview-image">
+                                <img id="result-preview" alt="Processed image">
+                            </div>
+                            <div class="result-actions">
+                                <button class="btn btn-success" id="download-btn">
+                                    <svg width="16" height="16" fill="none" stroke="currentColor">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="7,10 12,15 17,10"/>
+                                        <line x1="12" y1="15" x2="12" y2="3"/>
+                                    </svg>
+                                    Download PNG
+                                </button>
+                                <button class="btn btn-outline" id="new-image-btn">Process Another</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Why Choose PngFy Pro?</h2>
+                    <p class="section-subtitle">
+                        Professional-grade background removal with enterprise-level features
+                    </p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" fill="none" stroke="currentColor">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h3>AI-Powered</h3>
+                        <p>Advanced machine learning algorithms for precise edge detection and background removal.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" fill="none" stroke="currentColor">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <h3>Lightning Fast</h3>
+                        <p>Process images in under 5 seconds with our optimized cloud infrastructure.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" fill="none" stroke="currentColor">
+                                <path d="M9 12l2 2 4-4"/>
+                                <path d="M21 12c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z"/>
+                                <path d="M3 12c1 0 2-1 2-2s-1-2-2-2-2 1-2 2 1 2 2 2z"/>
+                            </svg>
+                        </div>
+                        <h3>High Quality</h3>
+                        <p>Maintain original image quality with lossless processing and perfect edge preservation.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" fill="none" stroke="currentColor">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3>Secure & Private</h3>
+                        <p>Your images are processed securely and automatically deleted after processing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <svg class="footer-logo" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L22 8V16L12 22L2 16V8L12 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                        <span>PngFy Pro</span>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Product</h4>
+                            <a href="#features">Features</a>
+                            <a href="#pricing">Pricing</a>
+                            <a href="#api">API</a>
+                        </div>
+                        
+                        <div class="footer-column">
+                            <h4>Support</h4>
+                            <a href="#help">Help Center</a>
+                            <a href="#contact">Contact</a>
+                            <a href="#status">Status</a>
+                        </div>
+                        
+                        <div class="footer-column">
+                            <h4>Company</h4>
+                            <a href="#about">About</a>
+                            <a href="#blog">Blog</a>
+                            <a href="#careers">Careers</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>
+                        Made with ❤️ By <a href="https://waqaras.dev" class="footer-credit" target="_blank" rel="noopener">Waqar Ahmed</a><br>
+                        &copy; 2025 PngFy Pro. All rights reserved.
+                    </p>
+                    <div class="footer-legal">
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#terms">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="/js/app.js"></script>
+</body>
+</html> 
