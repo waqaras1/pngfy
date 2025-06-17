@@ -16,6 +16,20 @@ class PngFyApp {
     }
     
     hideLoadingScreen() {
+        const loadingCounter = document.getElementById('loading-counter');
+        let progress = 0;
+        
+        const counterInterval = setInterval(() => {
+            progress += 2;
+            if (loadingCounter) {
+                loadingCounter.textContent = `${Math.min(progress, 100)}%`;
+            }
+            
+            if (progress >= 100) {
+                clearInterval(counterInterval);
+            }
+        }, 12); // Update every 12ms to reach 100% in ~600ms
+        
         setTimeout(() => {
             const loadingScreen = document.getElementById('loading-screen');
             const app = document.getElementById('app');
@@ -26,7 +40,7 @@ class PngFyApp {
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
             }, 350);
-        }, 1500);
+        }, 600);
     }
     
     bindEvents() {
@@ -470,19 +484,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ErrorHandler.handleError(error, 'App Initialization');
     }
 });
-
-// Service Worker registration (for PWA features)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
-            });
-    });
-}
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {
