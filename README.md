@@ -1,39 +1,48 @@
-# PngFy Pro - AI Background Removal Tool
+# PngFy Pro - AI Background Removal SaaS
 
-A professional-grade background removal application built with modern web technologies. Transform your images instantly with AI-powered background removal.
+A premium SaaS platform for AI-powered background removal, built with Next.js 14, TypeScript, and modern web technologies.
 
-![PngFy Pro](https://img.shields.io/badge/PngFy-Pro-blue?style=for-the-badge&logo=image)
-![Node.js](https://img.shields.io/badge/Node.js-18+-green?style=for-the-badge&logo=node.js)
-![Express](https://img.shields.io/badge/Express-4.18+-black?style=for-the-badge&logo=express)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+## 🚀 Features
 
-## ✨ Features
+### Core Functionality
+- **AI Background Removal**: Powered by Remove.bg API
+- **Drag & Drop Upload**: Intuitive file upload interface
+- **Real-time Processing**: Live progress tracking
+- **High-Quality Output**: PNG format with transparency
 
-- **AI-Powered Background Removal** - Advanced machine learning algorithms for precise edge detection
-- **Lightning Fast Processing** - Results in under 5 seconds with optimized cloud infrastructure
-- **High Quality Output** - Maintain original image quality with lossless processing
-- **Secure & Private** - Images are processed securely and automatically deleted
-- **Drag & Drop Interface** - Intuitive file upload with visual feedback
-- **Multiple Format Support** - JPG, PNG, WEBP (up to 10MB)
-- **Responsive Design** - Works perfectly on desktop, tablet, and mobile
-- **Professional UI/UX** - Modern, clean interface with smooth animations
-- **Real-time Progress** - Visual feedback during processing
-- **Error Handling** - Comprehensive error handling with user-friendly messages
+### SaaS Features
+- **User Authentication**: Secure login/signup with Clerk
+- **Credit System**: Pay-per-use model with subscription plans
+- **File Management**: Cloudinary integration for image storage
+- **Processing History**: Track all processed images
+- **Billing & Subscriptions**: Stripe integration for payments
+- **API Access**: RESTful API for power users
+- **Dark/Light Mode**: Beautiful theme switching
 
-## 🚀 Quick Start
+### Technical Stack
+- **Frontend**: Next.js 14 with App Router, TypeScript
+- **Styling**: Tailwind CSS + shadcn/ui components
+- **Authentication**: Clerk
+- **Database**: PostgreSQL with Prisma ORM
+- **File Storage**: Cloudinary
+- **Payments**: Stripe
+- **Background Removal**: Remove.bg API
 
-### Prerequisites
+## 📋 Prerequisites
 
 - Node.js 18+ 
-- npm or yarn
+- PostgreSQL database
 - Remove.bg API key
+- Cloudinary account
+- Stripe account
+- Clerk account
 
-### Installation
+## 🛠️ Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/pngfy-pro.git
-   cd pngfy-pro
+   git clone <repository-url>
+   cd pngfy-pro-saas
    ```
 
 2. **Install dependencies**
@@ -43,266 +52,220 @@ A professional-grade background removal application built with modern web techno
 
 3. **Set up environment variables**
    ```bash
-   cp env.example .env
+   cp .env.example .env.local
    ```
    
-   Edit `.env` and add your Remove.bg API key:
+   Fill in your environment variables:
    ```env
+   # Database
+   DATABASE_URL="postgresql://username:password@localhost:5432/pngfy_pro"
+   
+   # Authentication (Clerk)
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_your_clerk_publishable_key
+   CLERK_SECRET_KEY=sk_test_your_clerk_secret_key
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard
+   
+   # Remove.bg API
    REMOVE_BG_API_KEY=your_remove_bg_api_key_here
+   
+   # Stripe
+   STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
+   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
+   STRIPE_WEBHOOK_SECRET=whsec_your_stripe_webhook_secret
+   
+   # Cloudinary
+   CLOUDINARY_CLOUD_NAME=your_cloud_name
+   CLOUDINARY_API_KEY=your_api_key
+   CLOUDINARY_API_SECRET=your_api_secret
+   
+   # App Configuration
+   NEXT_PUBLIC_APP_URL=http://localhost:3000
+   NODE_ENV=development
    ```
 
-4. **Build assets**
+4. **Set up the database**
    ```bash
-   npm run build
+   # Generate Prisma client
+   npm run db:generate
+   
+   # Push schema to database
+   npm run db:push
    ```
 
-5. **Start the server**
+5. **Run the development server**
    ```bash
-   npm start
+   npm run dev
    ```
 
 6. **Open your browser**
-   Navigate to `http://localhost:3000`
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-### Development
-
-For development with hot reloading:
-
-```bash
-npm run dev
-```
-
-For watching CSS and JS changes:
-
-```bash
-npm run watch
-```
-
-## 🏗️ Architecture
-
-### Backend (Node.js/Express)
-
-- **Express.js** - Web framework
-- **Multer** - File upload handling
-- **Helmet** - Security headers
-- **CORS** - Cross-origin resource sharing
-- **Rate Limiting** - API protection
-- **Compression** - Response compression
-- **Sharp** - Image processing utilities
-
-### Frontend (Vanilla JavaScript)
-
-- **Modern ES6+** - Latest JavaScript features
-- **CSS Custom Properties** - Dynamic theming
-- **SCSS** - Advanced CSS preprocessing
-- **Responsive Design** - Mobile-first approach
-- **Progressive Web App** - PWA capabilities
-- **Service Worker** - Offline functionality
-
-### Security Features
-
-- **API Key Protection** - Server-side API key handling
-- **File Validation** - Type and size validation
-- **Rate Limiting** - Prevent abuse
-- **CSP Headers** - Content Security Policy
-- **Input Sanitization** - XSS protection
-- **Automatic Cleanup** - Temporary file removal
-
-## 📁 Project Structure
+## 🏗️ Project Structure
 
 ```
-pngfy-pro/
-├── public/                 # Static assets
-│   ├── css/               # Compiled CSS
-│   ├── js/                # JavaScript files
-│   ├── images/            # Image assets
-│   └── index.html         # Main HTML file
-├── src/
-│   └── styles/            # SCSS source files
-├── uploads/               # Temporary upload directory
-├── server.js              # Express server
-├── package.json           # Dependencies and scripts
-├── env.example            # Environment variables template
-└── README.md              # This file
+├── app/                    # Next.js App Router
+│   ├── api/               # API routes
+│   ├── dashboard/         # Dashboard pages
+│   ├── sign-in/          # Authentication pages
+│   ├── sign-up/          # Authentication pages
+│   ├── globals.css       # Global styles
+│   ├── layout.tsx        # Root layout
+│   └── page.tsx          # Landing page
+├── components/            # React components
+│   ├── dashboard/        # Dashboard-specific components
+│   └── ui/              # Reusable UI components
+├── hooks/                # Custom React hooks
+├── lib/                  # Utility functions
+├── prisma/               # Database schema and migrations
+└── public/               # Static assets
 ```
 
 ## 🔧 Configuration
 
-### Environment Variables
+### Database Setup
+1. Create a PostgreSQL database
+2. Update `DATABASE_URL` in your environment variables
+3. Run `npm run db:push` to create tables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `NODE_ENV` | Environment mode | `development` |
-| `PORT` | Server port | `3000` |
-| `REMOVE_BG_API_KEY` | Remove.bg API key | Required |
+### Authentication Setup (Clerk)
+1. Create a Clerk account at [clerk.com](https://clerk.com)
+2. Create a new application
+3. Copy your publishable and secret keys
+4. Configure sign-in/sign-up URLs
 
-### API Endpoints
+### File Storage Setup (Cloudinary)
+1. Create a Cloudinary account
+2. Get your cloud name, API key, and secret
+3. Update environment variables
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/` | Main application page |
-| `POST` | `/api/remove-background` | Remove image background |
-| `GET` | `/api/health` | Health check endpoint |
+### Payment Setup (Stripe)
+1. Create a Stripe account
+2. Get your publishable and secret keys
+3. Set up webhook endpoints
+4. Update environment variables
+
+### Background Removal API (Remove.bg)
+1. Sign up at [remove.bg](https://remove.bg)
+2. Get your API key
+3. Update environment variables
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Add environment variables in Vercel dashboard
+4. Deploy
+
+### Other Platforms
+The app can be deployed to any platform that supports Next.js:
+- Railway
+- Render
+- Netlify
+- AWS Amplify
+
+## 📊 Database Schema
+
+### Users
+- Authentication via Clerk
+- Profile information
+- Subscription details
+
+### Subscriptions
+- Plan information
+- Billing details
+- Status tracking
+
+### Credits
+- Credit balance
+- Purchase history
+- Usage tracking
+
+### Images
+- Original and processed URLs
+- Processing metadata
+- User association
+
+### API Keys
+- User-generated API keys
+- Usage tracking
+- Access control
+
+## 🔌 API Endpoints
+
+### Background Removal
+- `POST /api/remove-background` - Process image
+
+### User Management
+- `GET /api/user/profile` - Get user profile
+- `PUT /api/user/profile` - Update profile
+
+### Billing
+- `GET /api/billing/subscription` - Get subscription
+- `POST /api/billing/create-checkout` - Create checkout session
+- `POST /api/billing/webhook` - Stripe webhook
 
 ## 🎨 Customization
 
 ### Styling
+- Modify `app/globals.css` for global styles
+- Update `tailwind.config.js` for theme customization
+- Use shadcn/ui components for consistent design
 
-The application uses CSS custom properties for easy theming. Edit `src/styles/main.scss` to customize:
+### Components
+- All components are in the `components/` directory
+- Dashboard components in `components/dashboard/`
+- Reusable UI components in `components/ui/`
 
-```scss
-:root {
-  --primary: #6366f1;        // Primary brand color
-  --secondary: #f59e0b;      // Secondary color
-  --success: #10b981;        // Success state color
-  --danger: #ef4444;         // Error state color
-  // ... more variables
-}
-```
-
-### Features
-
-Add new features by extending the `PngFyApp` class in `public/js/app.js`:
-
-```javascript
-class PngFyApp {
-  // ... existing methods
-  
-  async newFeature() {
-    // Your custom feature implementation
-  }
-}
-```
-
-## 📊 Performance
-
-### Optimizations
-
-- **Image Compression** - Automatic image optimization
-- **Lazy Loading** - Images load on demand
-- **Caching** - Browser and service worker caching
-- **Minification** - CSS and JS minification for production
-- **CDN Ready** - Static assets optimized for CDN delivery
-
-### Monitoring
-
-Built-in performance monitoring:
-
-```javascript
-// Track custom metrics
-window.performanceMonitor.startTimer('custom-operation');
-// ... your code
-window.performanceMonitor.endTimer('custom-operation');
-```
+### Database
+- Modify `prisma/schema.prisma` for database changes
+- Run `npm run db:migrate` after schema changes
 
 ## 🔒 Security
 
-### Best Practices
+- Authentication required for all dashboard routes
+- API rate limiting
+- File upload validation
+- Secure environment variable handling
+- CORS configuration
 
-- API keys stored server-side only
-- File type validation
-- Size limits enforced
-- Rate limiting on API endpoints
-- Automatic file cleanup
-- HTTPS enforcement in production
+## 📈 Monitoring & Analytics
 
-### Deployment Security
-
-```bash
-# Set production environment
-NODE_ENV=production
-
-# Use HTTPS in production
-# Configure reverse proxy (nginx/Apache)
-# Set up SSL certificates
-# Enable security headers
-```
-
-## 🚀 Deployment
-
-### Heroku
-
-```bash
-# Create Heroku app
-heroku create your-pngfy-app
-
-# Set environment variables
-heroku config:set REMOVE_BG_API_KEY=your_api_key
-heroku config:set NODE_ENV=production
-
-# Deploy
-git push heroku main
-```
-
-### Docker
-
-```dockerfile
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-COPY . .
-RUN npm run build
-EXPOSE 3000
-CMD ["npm", "start"]
-```
-
-### Vercel/Netlify
-
-Configure build settings:
-
-- **Build Command**: `npm run build`
-- **Output Directory**: `public`
-- **Install Command**: `npm install`
+- Error tracking (Sentry integration ready)
+- Usage analytics
+- Performance monitoring
+- User behavior tracking
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
 
-### Development Guidelines
+## 📄 License
 
-- Follow ESLint configuration
-- Write meaningful commit messages
-- Add tests for new features
-- Update documentation
-- Ensure responsive design
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 📝 License
+## 🆘 Support
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+For support, email support@pngfy-pro.com or create an issue in the repository.
 
-## 🙏 Acknowledgments
+## 🔮 Roadmap
 
-- [Remove.bg](https://remove.bg/) - Background removal API
-- [Inter Font](https://rsms.me/inter/) - Beautiful typography
-- [Feather Icons](https://feathericons.com/) - Clean icon set
-
-## 📞 Support
-
-- **Documentation**: [Wiki](https://github.com/your-username/pngfy-pro/wiki)
-- **Issues**: [GitHub Issues](https://github.com/your-username/pngfy-pro/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/pngfy-pro/discussions)
-- **Email**: support@pngfy-pro.com
-
-## 🔄 Changelog
-
-### v2.0.0 (Current)
-- Complete UI/UX redesign
-- Modern JavaScript architecture
-- Enhanced security features
-- Performance optimizations
-- Mobile-responsive design
-- Professional documentation
-
-### v1.0.0 (Original)
-- Basic background removal functionality
-- Simple Bootstrap UI
-- Frontend-only implementation
+- [ ] Batch processing
+- [ ] Advanced editing tools
+- [ ] Team collaboration
+- [ ] Mobile app
+- [ ] API rate limiting
+- [ ] Advanced analytics
+- [ ] White-label solutions
+- [ ] Enterprise features
 
 ---
 
-Made with ❤️ by the PngFy Pro Team # Pngfy-Pro
+Built with ❤️ using Next.js, TypeScript, and modern web technologies.
