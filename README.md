@@ -1,4 +1,4 @@
-# PngFy Pro - AI Background Removal SaaS
+# PngFy Pro - AI Background Removal
 
 A premium SaaS platform for AI-powered background removal, built with Next.js 14, TypeScript, and modern web technologies.
 
